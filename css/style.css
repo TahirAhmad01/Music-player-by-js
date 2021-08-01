@@ -293,6 +293,10 @@ body{
 }
 
 @media (max-width: 450px) {
+    body{
+        display: block;
+        margin-top: 30px
+    }
     .play-btn{
         height: 50px;
         width: 50px;
