@@ -12,6 +12,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .main-frame{
@@ -174,13 +175,6 @@ body{
     box-shadow: -100vw 0 0 100vw #fff; 
 }
 
-.vol-slider::-moz-range-thumb .slider::-moz-range-thumb{
-    height: 0px;
-    width: 0px;
-    border-radius: 0 !important;
-    box-shadow: -100vw 0 0 100vw #fff;
-}
-
 .vol-slider::-ms-thumb,.slider::-ms-thumb{ 
     width: 0px;
 }
@@ -202,6 +196,16 @@ body{
 
 .vol-slider::-ms-tooltip ,.slider::-ms-tooltip{ 
     display: block;
+}
+
+.vol-slider::-moz-range-thumb,  .slider::-moz-range-thumb{
+    background: #fff;
+    height: 0px;
+    width: 0px;
+    border: 0px solid #fff;
+    border-radius: 0 !important;
+    box-shadow: -100vw 0 0 100vw #fff;
+    box-sizing: border-box;
 }
 
 .volume-ico, .current-volume{
@@ -255,17 +259,6 @@ body{
     width: 60px !important;
 }
 
-.play-pause div:hover, .unic_btn:hover{
-    background-color: #ff3838;
-    transition: .2s;
-    -webkit-transition: .2s;
-    -moz-transition: .2s;
-    -ms-transition: .2s;
-    -o-transition: .2s;
-    cursor: pointer;
-    box-shadow: inset 2px 2px 5px rgb(0 0 0 / 20%), inset -2px -2px 5px rgb(255 255 255 / 10%), 5px 5px 15px rgb(0 0 0 / 30%), -5px -5px 15px rgb(255 255 255 / 10%);
-}
-
 .play-controol{
     width: 100%;
     flex-grow: 1;
@@ -291,12 +284,36 @@ body{
 .unic_btn i{
     font-weight: 400;
 }
+@media (min-width: 451px) {
+    .play-pause div:hover, .unic_btn:hover{
+        background-color: #ff3838;
+        transition: .2s;
+        -webkit-transition: .2s;
+        -moz-transition: .2s;
+        -ms-transition: .2s;
+        -o-transition: .2s;
+        cursor: pointer;
+        box-shadow: inset 2px 2px 5px rgb(0 0 0 / 20%), inset -2px -2px 5px rgb(255 255 255 / 10%), 5px 5px 15px rgb(0 0 0 / 30%), -5px -5px 15px rgb(255 255 255 / 10%);
+    }
+}
 
 @media (max-width: 450px) {
     body{
         display: block;
         margin-top: 30px
     }
+
+    .play-pause div:active, .unic_btn:active{
+        background-color: #ff3838;
+        transition: .2s;
+        -webkit-transition: .2s;
+        -moz-transition: .2s;
+        -ms-transition: .2s;
+        -o-transition: .2s;
+        cursor: pointer;
+        box-shadow: inset 2px 2px 5px rgb(0 0 0 / 20%), inset -2px -2px 5px rgb(255 255 255 / 10%), 5px 5px 15px rgb(0 0 0 / 30%), -5px -5px 15px rgb(255 255 255 / 10%);
+    }
+
     .play-btn{
         height: 50px;
         width: 50px;
@@ -324,6 +341,9 @@ body{
     .second_frame{
         width: 60%;
     }
+
+    .play-pause {
+        flex: 0;
 }
 
 

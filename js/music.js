@@ -91,8 +91,11 @@ $(function(){
 		}else{
 			var d_second = duration_seconds;
 		}
-		$("#duration_time").text(d_minute + ":" + d_second);
-		$("#track_duration").val(track.currentTime*100/track.duration);
+
+		$( document ).ready(function() {
+			$("#duration_time").text(d_minute + ":" + d_second);
+			$("#track_duration").val(track.currentTime*100/track.duration);
+		});
 	}
 
 	//Music Play Pause
