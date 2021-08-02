@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nobile&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -30,8 +32,8 @@ body{
 .logo{
     font-size: 25px;
     position: absolute;
-    top: 20px;
-    left: 5%;
+    top: 17px;
+    left: 20px;
     color: #ccc;
 }
 
@@ -51,8 +53,68 @@ body{
     font-size: 14px;
 }
 
+.music-count:hover{
+    cursor: pointer;
+}
+
 .music-count p{
     display: inline-block;
+}
+
+.playlist{
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: calc(100% - 40px);
+    height: 0;
+    background-color: #636e72;
+    z-index: 1;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 10px 10px;
+    overflow-y: auto;
+    color: #fff;
+    opacity: 0;
+    transition: .5s ease;
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -ms-transition: .5s ease;
+    -o-transition: .5s ease;
+}
+
+.p_active{
+    height: 250px;
+    opacity: 1;
+    transition: .5s ease;
+}
+
+.playlist::-webkit-scrollbar {
+    display: none;
+}
+
+.playlist_item{
+    /* border: 1px solid #000; */
+    width: 100%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 3px 10px;
+    margin-bottom: 7px;
+}
+
+.p_artist{
+    font-size: 13px;
+    color: rgb(201, 201, 201);
+}
+
+.playlist_item:hover{
+    box-shadow: inset 2px 2px 5px rgb(0 0 0 / 5%), inset -2px -2px 5px rgb(255 255 255 / 3%), 5px 5px 5px rgb(0 0 0 / 10%), -5px -5px 5px rgb(255 255 255 / 10%);
+    cursor: pointer;
 }
 
 .music_sec{
@@ -249,7 +311,7 @@ body{
     height: 80px;
     width: 80px;
 }
-.play-btn , .auto_active{
+.play-btn , .auto_active, .playlist_active{
     background-color: #ff4d4d;
     box-shadow: inset 5px 5px 5px rgb(0 0 0 / 20%), inset -5px -5px 15px rgb(255 255 255 / 10%), 5px 5px 15px rgb(0 0 0 / 30%), -5px -5px 10px rgb(255 255 255 / 10%);
 }
@@ -284,6 +346,17 @@ body{
 .unic_btn i{
     font-weight: 400;
 }
+
+#song_title{
+    font-family: 'Nobile', sans-serif;
+    margin-bottom: 3px;
+}
+
+#artist{
+    color: #ccc;
+    font-size: 14px;
+}
+
 @media (min-width: 451px) {
     .play-pause div:hover, .unic_btn:hover{
         background-color: #ff3838;
@@ -344,7 +417,5 @@ body{
 
     .play-pause {
         flex: 0;
+    }
 }
-
-
-

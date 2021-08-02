@@ -9,33 +9,39 @@ $(function(){
 			name: "Alan_Walker_-_Fade",
 			artist: "Alan_Walker",
 			image: "1.jpg",
-			path: "Alan_Walker_-_Fade.mp3"
+			path: "Alan_Walker_-_Fade.mp3",
 		},
 		{
 			name: "Alan_Walker_-_Force",
 			artist: "Alan_Walker",
 			image: "2.jpg",
-			path: "Alan_Walker_-_Force.mp3"
+			path: "Alan_Walker_-_Force.mp3",
 		},
 		{
 			name: "Alan_Walker_-_Spectre",
 			artist: "Alan_Walker",
 			image: "3.jpg",
-			path: "Alan_Walker_-_Spectre.mp3"
+			path: "Alan_Walker_-_Spectre.mp3",
 		},
 		{
 			name: "Structure___mood_off_song",
 			artist: "Unknown",
 			image: "4.jpg",
-			path: "Structure___mood_off_song.mp3"
+			path: "Structure___mood_off_song.mp3",
 		},
 		{
 			name: "Warriyo_-_Mortals",
 			artist: "unknown",
 			image: "5.jpg",
-			path: "Warriyo_-_Mortals.mp3"
+			path: "Warriyo_-_Mortals.mp3",
 		}
 	]
+
+	//playlist open
+	$(".music-count").on('click', function(){
+		$(this).toggleClass("playlist_active");
+		$(".playlist").toggleClass("p_active");
+	})
 
 	// volume value
 	var volume_value = $("#volume").val();
@@ -121,6 +127,21 @@ $(function(){
 
 	music_play_nm( index_no );
 
+	for (let i = 0; i < audio_track_list.length; i++) {
+		$(".playlist").append("<div class='playlist_item p_song_title_"+i+"'> <div>"+audio_track_list[i].name+"</div> <div id='p_song_artist' class='p_artist'> Artist: "+audio_track_list[i].artist+"</div> </div>");
+
+		$(".p_song_title_"+i).on('click', function() {
+			index_no = i;
+			music_play_nm( index_no )
+			if($('.play').hasClass('active')){
+				play();
+				$('.play').addClass('active')
+			}else{
+				pause();
+			}
+		})
+	}
+
 	//forword track
 	$("#forword_track").on("click", function(){
 		if(index_no < audio_track_list.length -1 ){
@@ -186,7 +207,6 @@ $(function(){
 
 	//mute music
 	$("#volume_btn").on('click',function(){
-		var volume_value = $("#volume").val();
 		var uvol = track.volume = 0;
 		$('#volume').val(uvol)
 		$(".current-volume").text($('#volume').val());
@@ -217,7 +237,7 @@ $(function(){
 		//music end pause
 		if(track.currentTime == track.duration){
 			
-			if($("#auto_play").hasClass("auto_active") && $('.play').hasClass('active')){
+			if($("#auto_play").hasClass("auto_active") && $('.play').hasClass('active' )&& index_no < audio_track_list.length ){
 				index_no += 1;
 				music_play_nm( index_no );
 				play();
