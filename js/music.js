@@ -361,7 +361,8 @@ $(function(){
 		// audio.play();
 	};
 
-	
-	start();
+	track.onplay = function(){
+		start();
+	}
 
 })
