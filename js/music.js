@@ -6,34 +6,40 @@ $(function(){
 
 	audio_track_list = [
 		{
-			name: "Alan_Walker_-_Fade",
-			artist: "Alan_Walker",
+			name: "Alan Walker - Fade",
+			artist: "Alan Walker",
 			image: "1.jpg",
 			path: "Alan_Walker_-_Fade.mp3",
 		},
 		{
-			name: "Alan_Walker_-_Force",
-			artist: "Alan_Walker",
+			name: "Alan Walker - Force",
+			artist: "Alan Walker",
 			image: "2.jpg",
 			path: "Alan_Walker_-_Force.mp3",
 		},
 		{
-			name: "Alan_Walker_-_Spectre",
-			artist: "Alan_Walker",
+			name: "Alan Walker - Spectre",
+			artist: "Alan Walker",
 			image: "3.jpg",
 			path: "Alan_Walker_-_Spectre.mp3",
 		},
 		{
-			name: "Structure___mood_off_song",
+			name: "Structure mood off song",
 			artist: "Unknown",
 			image: "4.jpg",
 			path: "Structure___mood_off_song.mp3",
 		},
 		{
-			name: "Warriyo_-_Mortals",
+			name: "Warriyo - Mortals",
 			artist: "unknown",
 			image: "5.jpg",
 			path: "Warriyo_-_Mortals.mp3",
+		},
+		{
+			name: "Pirates of caribbean Ringtone",
+			artist: "unknown",
+			image: "6.jpg",
+			path: "Pirates of caribbean Ringtone ( 256kbps cbr ).mp3",
 		}
 	]
 
@@ -51,13 +57,17 @@ $(function(){
 	//music play function
 	function play(){
 		$('.play').html('<i class="fas fa-pause"></i>'); 
-		track.play()
+		track.play();
+		$('#spans').addClass('spans');
+		$('#music_ani_bg').addClass('music_ani_bg');
 	}
 
 	//music pause function
 	function pause(){
 		$('.play').html('<i class="fas fa-play"></i>');
 		track.pause();
+		$('#spans').removeClass('spans')
+		$('#music_ani_bg').removeClass('music_ani_bg')
 	}
 
 	//current_time_function
@@ -98,10 +108,13 @@ $(function(){
 			var d_second = duration_seconds;
 		}
 
-		$( document ).ready(function() {
+		if( track.duration === 0 || track.duration >= 0){
 			$("#duration_time").text(d_minute + ":" + d_second);
 			$("#track_duration").val(track.currentTime*100/track.duration);
-		});
+		}else{
+			$("#duration_time").text("00" + ":" + "00");
+		}
+			
 	}
 
 	//Music Play Pause
@@ -132,7 +145,9 @@ $(function(){
 
 		$(".p_song_title_"+i).on('click', function() {
 			index_no = i;
-			music_play_nm( index_no )
+			music_play_nm( index_no );
+			$(".music-count").toggleClass("playlist_active");
+			$(".playlist").toggleClass("p_active");
 			if($('.play').hasClass('active')){
 				play();
 				$('.play').addClass('active')
