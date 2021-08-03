@@ -1,5 +1,7 @@
 $(function(){
 	var track = document.createElement('audio');
+	track.style.display = 'none';
+	document.body.insertBefore(track, document.body.childNodes[0]);
 	let index_no = 0;
 	track.id = "audio";
 	track.attr = "controls";
@@ -9,37 +11,55 @@ $(function(){
 			name: "Alan Walker - Fade",
 			artist: "Alan Walker",
 			image: "1.jpg",
-			path: "Alan_Walker_-_Fade.mp3",
+			path: "1.mp3",
+		},
+		{
+			name: "Pirates of caribbean Ringtone",
+			artist: "Unknown",
+			image: "2.jpg",
+			path: "2.mp3",
 		},
 		{
 			name: "Alan Walker - Force",
 			artist: "Alan Walker",
-			image: "2.jpg",
-			path: "Alan_Walker_-_Force.mp3",
+			image: "3.jpg",
+			path: "3.mp3",
 		},
 		{
 			name: "Alan Walker - Spectre",
 			artist: "Alan Walker",
-			image: "3.jpg",
-			path: "Alan_Walker_-_Spectre.mp3",
+			image: "4.jpg",
+			path: "4.mp3",
 		},
 		{
 			name: "Structure mood off song",
 			artist: "Unknown",
-			image: "4.jpg",
-			path: "Structure___mood_off_song.mp3",
+			image: "5.jpg",
+			path: "5.mp3",
 		},
 		{
 			name: "Warriyo - Mortals",
 			artist: "unknown",
-			image: "5.jpg",
-			path: "Warriyo_-_Mortals.mp3",
+			image: "6.jpg",
+			path: "6.mp3",
 		},
 		{
-			name: "Pirates of caribbean Ringtone",
-			artist: "unknown",
-			image: "6.jpg",
-			path: "Pirates of caribbean Ringtone ( 256kbps cbr ).mp3",
+			name: "Tujh Mein Rab Dikhta Hai",
+			artist: "Salim-Sulaiman",
+			image: "8.jpg",
+			path: "7.mp3",
+		},
+		{
+			name: "Cartoon - On & On",
+			artist: "feat. Daniel Levi",
+			image: "8.jpg",
+			path: "8.mp3",
+		},
+		{
+			name: "Zedd, Alessia Cara - Stay",
+			artist: "Alessia Cara",
+			image: "9.jpg",
+			path: "9.mp3",
 		}
 	]
 
@@ -243,6 +263,10 @@ $(function(){
 		track_cu_time_update();
 		track_du_time_update();
 	})
+
+	track.onplay = function(){
+		console.log(track.onplay)
+	}
 	
 	//track time fixer
 	setInterval(() => {
@@ -278,5 +302,67 @@ $(function(){
 
 
 	$("#total_track").text(audio_track_list.length)
+
+	window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
+
+	var start = function() {
+		var audio = document.getElementById('audio');
+		var ctx = new AudioContext();
+		var analyser = ctx.createAnalyser();
+		var audioSrc = ctx.createMediaElementSource(audio);
+		// we have to connect the MediaElementSource with the analyser 
+		audioSrc.connect(analyser);
+		analyser.connect(ctx.destination);
+		// we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
+		// analyser.fftSize = 64;
+		// frequencyBinCount tells you how many values you'll receive from the analyser
+		var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+		// we're ready to receive some data!
+		var canvas = document.getElementById('canvas'),
+			cwidth = canvas.width,
+			cheight = canvas.height - 2,
+			meterWidth = 10, //width of the meters in the spectrum
+			gap = 2, //gap between meters
+			capHeight = 2,
+			capStyle = '#fff',
+			meterNum = 800 / (10 + 2), //count of the meters
+			capYPositionArray = []; ////store the vertical position of hte caps for the preivous frame
+		ctx = canvas.getContext('2d'),
+		gradient = ctx.createLinearGradient(0, 0, 0, 300);
+		gradient.addColorStop(1, '#0f0');
+		gradient.addColorStop(0.5, '#ff0');
+		gradient.addColorStop(0, '#f00');
+		// loop
+		function renderFrame() {
+			var array = new Uint8Array(analyser.frequencyBinCount);
+			analyser.getByteFrequencyData(array);
+			var step = Math.round(array.length / meterNum); //sample limited data from the total array
+			ctx.clearRect(0, 0, cwidth, cheight);
+			for (var i = 0; i < meterNum; i++) {
+				var value = array[i * step];
+				if (capYPositionArray.length < Math.round(meterNum)) {
+					capYPositionArray.push(value);
+				};
+				ctx.fillStyle = capStyle;
+				//draw the cap, with transition effect
+				if (value < capYPositionArray[i]) {
+					ctx.fillRect(i * 12, cheight - (--capYPositionArray[i]), meterWidth, capHeight);
+				} else {
+					ctx.fillRect(i * 12, cheight - value, meterWidth, capHeight);
+					capYPositionArray[i] = value;
+				};
+				ctx.fillStyle = gradient; //set the filllStyle to gradient for a better look
+				ctx.fillRect(i * 12 /*meterWidth+gap*/ , cheight - value + capHeight, meterWidth, cheight); //the meter
+			}
+			requestAnimationFrame(renderFrame);
+		}
+		renderFrame();
+		// audio.play();
+	};
+
+	track.onplay = function(){
+		start();
+	}
 
 })

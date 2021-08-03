@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mp3 music Player</title>
+    <link rel="shortcut icon" href="icon.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
 </head>
@@ -48,22 +49,9 @@
                     <img id="playback_image">
 
                     <div id="music_ani_bg">
-                        <div id="spans" >
-                            <span></span>
-                
-                            <span></span>
-                
-                            <span></span>
-                
-                            <span></span>    
-                
-                            <span></span>
-                
-                            <span></span>
-                
-                            <span></span>  
-                        </div>
+                        <canvas id="canvas" width="800" height="350"></canvas>
                     </div>
+                    
 
                 </div>
 
@@ -109,8 +97,10 @@
         </div>
     </div>
 
+
     <!-- script link -->
     <script src="js/jquery.min.js"></script>
+    <!-- <script src="js/audio_v.js"></script> -->
     <script src="js/music.js"></script>
 </body>
 </html>
