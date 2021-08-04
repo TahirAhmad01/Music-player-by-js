@@ -432,8 +432,8 @@ body{
 		height: 7px;
 	}
 
-	.vol-slider{
-		top: -2px !important;
+	.slider{
+		top: -1px !important;
 	}
 
 	.playlist_item:active{
