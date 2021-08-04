@@ -160,6 +160,7 @@ $(function(){
 
 	music_play_nm( index_no );
 
+	//playlist
 	for (let i = 0; i < audio_track_list.length; i++) {
 		$(".playlist").append("<div class='playlist_item p_song_title_"+i+"'> <div>"+audio_track_list[i].name+"</div> <div id='p_song_artist' class='p_artist'> Artist: "+audio_track_list[i].artist+"</div> </div>");
 
