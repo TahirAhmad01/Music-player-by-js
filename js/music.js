@@ -277,7 +277,7 @@ $(function(){
 		//music end pause
 		if(track.currentTime == track.duration){
 			
-			if($("#auto_play").hasClass("auto_active") && $('.play').hasClass('active' )&& index_no < audio_track_list.length ){
+			if($("#auto_play").hasClass("auto_active") && $('.play').hasClass('active') && index_no < audio_track_list.length ){
 				index_no += 1;
 				music_play_nm( index_no );
 				play();

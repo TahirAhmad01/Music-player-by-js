@@ -177,29 +177,6 @@ body{
 	min-height: 190px;
 }
 
-
-.spans span:nth-child(1){
-	animation-delay: .1s;
-}
-.spans span:nth-child(2){
-	animation-delay: .3s;
-}
-.spans span:nth-child(3){
-	animation-delay: .5s;
-}
-.spans span:nth-child(4){
-	animation-delay: .7s;
-}
-.spans span:nth-child(5){
-	animation-delay: .8s;
-}
-.spans span:nth-child(6){
-	animation-delay: .9s;
-}
-.spans span:nth-child(7){
-	animation-delay: 1s;
-}
-
 .playback-control{
 	display: flex;
 	justify-content: center;
@@ -280,10 +257,6 @@ body{
 	-ms-border-radius: 10px;
 	-o-border-radius: 10px;
 	background-color: rgb(173, 173, 173);
-}
-
-.vol-slider:hover, .slider:hover{
-	height: 7px;
 }
 
 .vol-slider:hover{
@@ -435,6 +408,10 @@ body{
 
 @media (min-width: 451px) {
 
+	.vol-slider:hover, .slider:hover{
+		height: 7px;
+	}
+
 	.play-pause div:hover, .unic_btn:hover{
 		cursor: pointer;
 	}
@@ -449,6 +426,14 @@ body{
 	body{
 		display: block;
 		margin-top: 30px
+	}
+
+	.vol-slider:active, .slider:active{
+		height: 7px;
+	}
+
+	.vol-slider{
+		top: -2px;
 	}
 
 	.playlist_item:active{
