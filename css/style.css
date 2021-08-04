@@ -433,7 +433,7 @@ body{
 	}
 
 	.vol-slider{
-		top: -2px;
+		top: -2px !important;
 	}
 
 	.playlist_item:active{
